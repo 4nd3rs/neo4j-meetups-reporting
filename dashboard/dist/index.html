@@ -37,7 +37,6 @@
     <script src="http://d3js.org/d3.v3.min.js"></script>
     <script src="./js/topojson.min.js"></script>
     <script src="./js/datamap.world.min.js"></script>
-    <script src="./js/maps.js"></script>
     <script src="./js/main.js"></script>
 </head>
 <body>
@@ -47,7 +46,7 @@
                 <button class="navbar-toggle" data-target=".navbar-collapse"
                 data-toggle="collapse" type="button"><span class=
                 "sr-only">Toggle navigation</span></button> <a class=
-                "navbar-brand" href="#">Meetup Analytics</a>
+                "navbar-brand" href="#"><img src="http://cdn.shopify.com/s/files/1/1042/7946/t/4/assets/logo.png?166885255095217797"></a>
 
                 <div class="loader" style="display: none;"></div>
             </div>
@@ -55,11 +54,6 @@
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav navbar-right">
                     <li><a href="#">Dashboard</a></li>
-
-                    <li><a href=
-                    "http://github.com/kbastani/meetup-analytics">GitHub</a></li>
-
-                    <li><a href="http://www.neo4j.org/">Neo4j</a></li>
                 </ul>
             </div>
         </div>
@@ -68,160 +62,45 @@
         <div class="row">
             <div class="main">
                 <div class="row">
-                    <div class="col-md-3">
+                    <div class="col-md-6">
                         <div class="panel panel-default">
                             <div class="panel-heading">
-                                Date range
+                                Products
                             </div>
                             <div class="panel-body">
-                                <form>
-                                    <div class="form-group">
-                                        <div class="input-group">
-                                            <span class=
-                                            "input-group-addon">From</span>
-                                            <input class="form-control" id=
-                                            "from" name="from" type="text"
-                                            value="06/01/2013">
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <div class="input-group">
-                                            <span class=
-                                            "input-group-addon">To&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-                                            <input class="form-control" id="to"
-                                            name="to" type="text" value=
-                                            "04/01/2014">
-                                        </div>
-                                    </div>
-                                </form>
+                                <ul id="products"></ul>
                             </div>
                         </div>
                     </div>
                     <div class="col-md-3">
                         <div class="panel panel-default">
                             <div class="panel-heading heading-location">
-                                Location
+                                Brands
                             </div>
                             <div class="panel-body">
-                                <div class="form-group">
-                                    <div class="input-group">
-                                        <div class=
-                                        "btn-group btn-group-justified">
-                                            <div class="btn-group">
-                                                <button class=
-                                                "btn btn-default meetup-location-btn"
-                                                type="button">City</button>
-                                            </div>
-                                            <div class="btn-group">
-                                                <button class=
-                                                "btn btn-default meetup-location-btn selected"
-                                                type="button">Country</button>
-                                            </div><input id="meetup-location"
-                                            type="hidden" value="country">
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <div class="input-group">
-                                        <span class=
-                                        "input-group-addon">@</span>
-                                        <input class=
-                                        "form-control group-location typeahead"
-                                        id="location" type="text" value="US">
-                                    </div>
-                                </div>
+                                <ul id="brands"></ul>
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-6">
+                    <div class="col-md-3">
                         <div class="panel panel-default">
                             <div class="panel-heading">
-                                Tags
+                                Stores
                             </div>
                             <div class="panel-body">
-                                <div class="form-group">
-                                    <div class="input-group">
-                                        <span class=
-                                        "input-group-addon">#</span>
-                                        <input class="form-control group-tags"
-                                        placeholder="Tags" type="text" value=
-                                        "Neo4j, MongoDB, Cassandra">
-                                    </div>
-                                    <p class="tag-caption">Press Enter to Update</p>
-                                </div>
+                                <ul id="stores"></ul>
                             </div>
                         </div>
                     </div>
                 </div>
                 <div class="panel panel-default">
-                    <div class="panel-body">
-                        <div class="form-group">
-                            <div class="input-group">
-                                <div class="btn-group btn-group-justified">
-                                    <div class="btn-group">
-                                        <button type="button" class="btn btn-default time-series-granularity-btn selected">Daily</button>
-                                    </div>
-                                    <div class="btn-group">
-                                        <button type="button" class="btn btn-default time-series-granularity-btn">Weekly</button>
-                                    </div>
-                                    <div class="btn-group">
-                                        <button type="button" class="btn btn-default time-series-granularity-btn">Monthly</button>
-                                    </div><input type="hidden" value="daily" id="granularity">
-                                </div>
-                            </div>
-                        </div>
-                        <div id="tag-container" style=
-                        "min-width: 250px; height: 250px; margin: 0 auto">
-                        </div>
-                    </div>
-                </div>
-                <div class="panel panel-default">
-                    <div class="panel-body">
-                        <div id="bar-container" style=
-                        "min-width: 250px; height: 200px; margin: 0 auto">
-                        </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-6">
-                        <div class="panel panel-default">
-                            <div class="panel-heading">
-                                Category Growth %
-                            </div>
-                            <div class="panel-body">
-                                <div id="arc-container" style=
-                                "min-width: 275px; height: 250px; margin: 0 auto">
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="panel panel-default">
-                            <div class="panel-heading">
-                                Group Count By Tag
-                            </div>
-                            <div class="panel-body">
-                                <div id="tag-count-container" style=
-                                "min-width: 275px; height: 250px; margin: 0 auto">
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!-- <div class="row">
-                    <div class="col-md-6">
-                        <div class="table-responsive"></div>
-                    </div>
-                </div> -->
-                <div class="panel panel-default data-map">
                     <div class="panel-heading">
-                      Growth Map: United States
+                        Product
                     </div>
                     <div class="panel-body">
-                        <div id="bubbles" class="map"></div>
+                        <ul id="product"></ul>
                     </div>
                 </div>
-            </div>
         </div>
     </div>
 </body>

@@ -55,5 +55,21 @@ module.exports = {
     "week":"string",
     "group":"string",
     "members":"int"
+  },
+  "Products":{
+    "productName":"string",
+    "productID":"string",
+    "productEAN":"string",
+    "imageURL":"string"
+  },
+  "Product":{
+    "productName":"string",
+    "imageURL":"string"
+  },
+  "Brands":{
+    "brandName":"string"
+  },
+  "Stores":{
+    "storeName":"string"
   }
 };

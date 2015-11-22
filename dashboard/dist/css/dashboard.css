@@ -100,13 +100,17 @@ text {
   color: #FFFFFF; !important;
 }
 
+.navbar-inverse .navbar-brand img
+{
+  max-height: 27px;
+}
 .navbar-inverse .navbar-nav > li > a
 {
   color: #FFFFFF; !important;
 }
 
 .navbar-inverse {
-    background-color: #E0393E !important;
+    background-color: #000 !important;
     border-color: #CCCCCC !important;
 }
 
